@@ -1162,14 +1162,18 @@ function App() {
 
       // 3. Proceed with EmailJS send
       const data = modalForm.getValues();
-      await window.emailjs.send("service_1rtfwld", "template_8ocozoa", {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        membership: data.membership,
-        message: data.message,
-        "g-recaptcha-response": token, // Optionally include the token in the email
-      });
+      await window.emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          membership: data.membership,
+          message: data.message,
+          "g-recaptcha-response": token, // Optionally include the token in the email
+        }
+      );
       modalForm.reset();
       closeModal();
       setToast({
@@ -1236,14 +1240,18 @@ function App() {
         return;
       }
       const data = contactForm.getValues();
-      await window.emailjs.send("service_1rtfwld", "template_8ocozoa", {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        membership: data.membership, // now always 'consultation' for contact form
-        message: data.message,
-        "g-recaptcha-response": token,
-      });
+      await window.emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          membership: data.membership, // now always 'consultation' for contact form
+          message: data.message,
+          "g-recaptcha-response": token,
+        }
+      );
       contactForm.reset();
       setContactCaptchaToken(null);
       setToast({
