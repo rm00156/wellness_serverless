@@ -1,6 +1,6 @@
-# Reign Ivy Wellness Landing Page
+# Wellness Landing Page
 
-A modern, responsive landing page for Reign Ivy Wellness - a premium fitness and wellness center located in Purley, Surrey. This React-based application showcases the facility's services, team, pricing plans, and provides seamless contact forms with reCAPTCHA protection.
+A modern, responsive landing page for wellness and fitness businesses. This React-based application showcases facility services, team members, pricing plans, and provides seamless contact forms with reCAPTCHA protection.
 
 ## 🏋️ Features
 
@@ -68,10 +68,22 @@ A modern, responsive landing page for Reign Ivy Wellness - a premium fitness and
 3. **Environment Variables**
    Create a `.env` file in the root directory:
    ```env
+   # EmailJS Configuration
    REACT_APP_EMAILJS_SERVICE_ID=your_emailjs_service_id
    REACT_APP_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
    REACT_APP_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
+   
+   # reCAPTCHA Configuration
    REACT_APP_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
+   
+   # Business Configuration
+   REACT_APP_BUSINESS_NAME=Your Business Name
+   REACT_APP_BUSINESS_LOGO=your-logo.png
+   REACT_APP_BUSINESS_EMAIL=info@yourbusiness.com
+   REACT_APP_BUSINESS_PHONE=(555) 123-4567
+   REACT_APP_BUSINESS_ADDRESS=123 Your Street
+   REACT_APP_BUSINESS_CITY=Your City, State ZIP
+   REACT_APP_BUSINESS_COUNTRY=Your Country
    ```
 
 4. **Start development server**
@@ -197,11 +209,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-For questions about this project:
-- **Email**: info@reignivy.com
-- **Phone**: (555) 123-4567
-- **Address**: 123 Wellness Avenue, Purley, Surrey CR8 1AB, United Kingdom
+For questions about this project, please refer to the business contact information configured in your environment variables:
+- **Email**: Set via `REACT_APP_BUSINESS_EMAIL`
+- **Phone**: Set via `REACT_APP_BUSINESS_PHONE`
+- **Address**: Set via `REACT_APP_BUSINESS_ADDRESS`, `REACT_APP_BUSINESS_CITY`, `REACT_APP_BUSINESS_COUNTRY`
 
 ---
 
-Built with ❤️ for Reign Ivy Wellness 
+Built with ❤️ for wellness businesses

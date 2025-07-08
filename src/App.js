@@ -1095,6 +1095,15 @@ const Toast = styled.div`
   transition: opacity 0.3s;
 `;
 
+// Business configuration from environment variables
+const BUSINESS_NAME = process.env.REACT_APP_BUSINESS_NAME;
+const BUSINESS_LOGO = process.env.REACT_APP_BUSINESS_LOGO;
+const BUSINESS_EMAIL = process.env.REACT_APP_BUSINESS_EMAIL;
+const BUSINESS_PHONE = process.env.REACT_APP_BUSINESS_PHONE;
+const BUSINESS_ADDRESS = process.env.REACT_APP_BUSINESS_ADDRESS;
+const BUSINESS_CITY = process.env.REACT_APP_BUSINESS_CITY;
+const BUSINESS_COUNTRY = process.env.REACT_APP_BUSINESS_COUNTRY;
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState(null);
@@ -1337,7 +1346,7 @@ function App() {
       <Navbar>
         <NavContainer>
           <Logo>
-            <img src="logo.png" alt="Reign Ivy" />
+            <img src={BUSINESS_LOGO} alt={BUSINESS_NAME} />
           </Logo>
           <DesktopNavLinks>
             <NavLink onClick={() => scrollToSection("services")}>
@@ -1550,7 +1559,7 @@ function App() {
             <TestimonialCarousel>
               <TestimonialCard $active={currentTestimonial === 0}>
                 <TestimonialText>
-                  "The personalized coaching at Reign Ivy has completely
+                  "The personalized coaching at {BUSINESS_NAME} has completely
                   transformed my approach to fitness. The attention to detail
                   and expert guidance has helped me achieve goals I never
                   thought possible."
@@ -1788,8 +1797,8 @@ function App() {
           <div style={{ display: "flex", alignItems: "center", gap: "30px" }}>
             <div>
               <img
-                src="logo.png"
-                alt="Reign Ivy"
+                src={BUSINESS_LOGO}
+                alt={BUSINESS_NAME}
                 style={{
                   height: "120px",
                   width: "auto",
@@ -1811,16 +1820,16 @@ function App() {
                 Contact Info
               </h4>
               <p style={{ margin: "0 0 8px 0", color: "#ffffff" }}>
-                123 Wellness Avenue
+                {BUSINESS_ADDRESS}
                 <br />
-                Purley, Surrey CR8 1AB
+                {BUSINESS_CITY}
                 <br />
-                United Kingdom
+                {BUSINESS_COUNTRY}
               </p>
               <p style={{ margin: "0 0 8px 0", color: "#ffffff" }}>
-                <strong>Phone:</strong> (555) 123-4567
+                <strong>Phone:</strong> {BUSINESS_PHONE}
                 <br />
-                <strong>Email:</strong> info@reignivy.com
+                <strong>Email:</strong> {BUSINESS_EMAIL}
               </p>
             </div>
           </div>
@@ -1915,8 +1924,7 @@ function App() {
           }}
         >
           <p style={{ fontSize: "0.9rem", opacity: "0.6", margin: "0" }}>
-            © {new Date().getFullYear()} Reign Ivy Wellness. All rights
-            reserved. |
+            © {new Date().getFullYear()} {BUSINESS_NAME}. All rights reserved. |
             <button
               type="button"
               style={{
@@ -2121,13 +2129,13 @@ function App() {
               <strong>Your Rights:</strong>
               <br />
               You may request to access, update, or delete your personal
-              information by contacting us at info@reignivy.com.
+              information by contacting us at {BUSINESS_EMAIL}
             </p>
             <p>
               <strong>Contact:</strong>
               <br />
-              For any privacy-related questions, please contact us at
-              info@reignivy.com.
+              For any privacy-related questions, please contact us at{" "}
+              {BUSINESS_EMAIL}
             </p>
             <p>
               This policy may be updated from time to time. Please review it
@@ -2158,8 +2166,9 @@ function App() {
               <strong>Terms of Service</strong>
             </p>
             <p>
-              By using the Reign Ivy Wellness website and services, you agree to
-              the following terms and conditions. Please read them carefully.
+              By using the {BUSINESS_NAME} Wellness website and services, you
+              agree to the following terms and conditions. Please read them
+              carefully.
             </p>
             <p>
               <strong>Use of Services:</strong>
@@ -2171,8 +2180,8 @@ function App() {
             <p>
               <strong>Intellectual Property:</strong>
               <br />
-              All content, trademarks, and data on this site are the property of
-              Reign Ivy Wellness or its licensors. You may not reproduce,
+              All content, trademarks, and data on this site are the property of{" "}
+              {BUSINESS_NAME} Wellness or its licensors. You may not reproduce,
               distribute, or create derivative works without our written
               permission.
             </p>
@@ -2192,8 +2201,8 @@ function App() {
             <p>
               <strong>Contact:</strong>
               <br />
-              For questions about these terms, please contact us at
-              info@reignivy.com.
+              For questions about these terms, please contact us at{" "}
+              {BUSINESS_EMAIL}
             </p>
           </div>
         </ModalContent>
