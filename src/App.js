@@ -50,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
     background: #1a1a1a;
     color: #ffffff;
     overflow-x: hidden;
-    padding-top: 80px; /* Account for fixed navbar */
+    padding-top: 0; /* Remove padding-top to let navbar be visible */
   }
   
   html {
@@ -79,7 +79,7 @@ const GlobalStyle = createGlobalStyle`
     /* Better scrolling on mobile */
     body {
       -webkit-overflow-scrolling: touch;
-      padding-top: 70px; /* Smaller navbar on mobile */
+      padding-top: 0; /* Remove padding-top to let navbar be visible */
     }
     
     /* Ensure no horizontal overflow on mobile */
@@ -105,15 +105,16 @@ const Navbar = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(26, 26, 26, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(26, 26, 26, 0.98);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding: 16px 24px;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
   will-change: transform;
+  animation: navbarFadeIn 0.5s ease-out;
 
   /* Enhanced backdrop for better readability */
   &::before {
@@ -123,7 +124,7 @@ const Navbar = styled.nav`
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(26, 26, 26, 0.98);
+    background: rgba(26, 26, 26, 0.99);
     z-index: -1;
   }
 
@@ -131,13 +132,28 @@ const Navbar = styled.nav`
   ${(props) =>
     props.$scrolled &&
     `
-    background: rgba(26, 26, 26, 0.98);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(26, 26, 26, 0.99);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   `}
 
   @media (max-width: 768px) {
     padding: 12px 16px;
+    background: rgba(26, 26, 26, 0.99);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  @keyframes navbarFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -160,6 +176,8 @@ const Logo = styled.div`
   display: flex;
   align-items: center;
   overflow: hidden;
+  position: relative;
+  z-index: 10;
 
   img {
     height: 60px;
@@ -167,6 +185,7 @@ const Logo = styled.div`
     object-fit: contain;
     margin: 0;
     filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
   }
 
   @media (max-width: 768px) {
@@ -174,6 +193,7 @@ const Logo = styled.div`
 
     img {
       height: 50px;
+      filter: brightness(0) invert(1) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
     }
   }
 
@@ -182,6 +202,7 @@ const Logo = styled.div`
 
     img {
       height: 45px;
+      filter: brightness(0) invert(1) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
     }
   }
 `;
@@ -277,6 +298,19 @@ const Hero = styled.section`
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  margin-top: 80px;
+
+  @media (max-width: 768px) {
+    margin-top: 70px;
+    height: calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 65px;
+    height: calc(100vh - 65px);
+    min-height: calc(100vh - 65px);
+  }
 `;
 
 const HeroBackground = styled.div`
@@ -690,6 +724,16 @@ const Hamburger = styled.button`
 
   @media (max-width: 768px) {
     display: block;
+    background: rgba(212, 196, 176, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    transition: background 0.3s ease;
+  }
+
+  &:hover {
+    @media (max-width: 768px) {
+      background: rgba(212, 196, 176, 0.2);
+    }
   }
 `;
 
@@ -709,6 +753,14 @@ const HamburgerLines = styled.div`
     border-radius: 2px;
     transition: 0.3s;
     margin: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    span {
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
   }
 `;
 
