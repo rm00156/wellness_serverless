@@ -72,8 +72,8 @@ const GlobalStyle = createGlobalStyle`
     
     /* Improve touch targets */
     button, a {
-      min-height: 44px;
-      min-width: 44px;
+      min-height: 48px;
+      min-width: 48px;
     }
     
     /* Better scrolling on mobile */
@@ -87,6 +87,23 @@ const GlobalStyle = createGlobalStyle`
       overflow-x: hidden;
       width: 100%;
       max-width: 100vw;
+    }
+
+    /* Better mobile typography */
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.3;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Even better touch targets for small screens */
+    button, a {
+      min-height: 52px;
+      min-width: 52px;
     }
   }
 `;
@@ -138,11 +155,15 @@ const Navbar = styled.nav`
   `}
 
   @media (max-width: 768px) {
-    padding: 12px 16px;
+    padding: 16px 20px;
     background: rgba(26, 26, 26, 0.99);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 480px) {
+    padding: 14px 16px;
   }
 
   @keyframes navbarFadeIn {
@@ -326,6 +347,14 @@ const HeroBackground = styled.div`
   background-image: url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
   background-size: cover;
   background-position: center;
+
+  @media (max-width: 768px) {
+    background-image: url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
+  }
+
+  @media (max-width: 480px) {
+    background-image: url("https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
+  }
 `;
 
 const Overlay = styled.div`
@@ -360,24 +389,24 @@ const HeroContent = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
-    padding: 0 40px;
+    padding: 0 32px;
     text-align: center;
-    gap: 40px;
+    gap: 48px;
   }
 
   @media (max-width: 480px) {
-    padding: 0 20px;
-    gap: 30px;
+    padding: 0 24px;
+    gap: 40px;
   }
 
   @media (max-width: 430px) {
-    padding: 0 15px;
-    gap: 25px;
+    padding: 0 20px;
+    gap: 36px;
   }
 
   @media (max-width: 375px) {
-    padding: 0 12px;
-    gap: 20px;
+    padding: 0 16px;
+    gap: 32px;
   }
 `;
 
@@ -483,18 +512,23 @@ const CTAButton = styled.button`
   transition: all 0.3s ease;
 
   @media (max-width: 768px) {
-    padding: 12px 28px;
-    font-size: 1rem;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    min-height: 56px;
+    border-radius: 28px;
   }
 
   @media (max-width: 480px) {
-    padding: 10px 24px;
-    font-size: 0.9rem;
+    padding: 18px 36px;
+    font-size: 1.2rem;
+    min-height: 60px;
+    border-radius: 30px;
   }
 
   @media (max-width: 430px) {
-    padding: 9px 22px;
-    font-size: 0.85rem;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    min-height: 56px;
   }
 
   &:hover {
@@ -770,30 +804,44 @@ const MobileMenu = styled.div`
     display: ${({ open }) => (open ? "flex" : "none")};
     flex-direction: column;
     position: absolute;
-    top: 60px;
-    right: 24px;
-    background: rgba(26, 26, 26, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    padding: 24px 32px;
+    top: 70px;
+    right: 16px;
+    background: rgba(26, 26, 26, 0.98);
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    padding: 28px 36px;
     z-index: 1200;
-    gap: 24px;
-    min-width: 180px;
+    gap: 28px;
+    min-width: 200px;
     align-items: flex-start;
-    border: 1px solid rgba(212, 196, 176, 0.2);
+    border: 1px solid rgba(212, 196, 176, 0.3);
+    animation: mobileMenuSlide 0.3s ease-out;
   }
 
   @media (max-width: 480px) {
-    right: 16px;
-    padding: 20px 24px;
-    min-width: 160px;
+    right: 12px;
+    padding: 24px 28px;
+    min-width: 180px;
+    gap: 24px;
   }
 
   @media (max-width: 375px) {
-    right: 12px;
-    padding: 16px 20px;
-    min-width: 140px;
+    right: 8px;
+    padding: 20px 24px;
+    min-width: 160px;
+    gap: 20px;
+  }
+
+  @keyframes mobileMenuSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 `;
 
@@ -824,22 +872,22 @@ const ServicesSection = styled.section`
   overflow: hidden;
 
   @media (max-width: 768px) {
-    padding: 30px 15px;
+    padding: 40px 24px;
     min-height: 700px;
   }
 
   @media (max-width: 480px) {
-    padding: 25px 10px;
+    padding: 36px 20px;
     min-height: 600px;
   }
 
   @media (max-width: 430px) {
-    padding: 22px 12px;
+    padding: 32px 16px;
     min-height: 650px;
   }
 
   @media (max-width: 375px) {
-    padding: 20px 8px;
+    padding: 28px 12px;
     min-height: 550px;
   }
 
@@ -956,14 +1004,14 @@ const TeamCards = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 0 12px;
+    gap: 24px;
+    padding: 0 16px;
   }
 
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 0 15px;
+    gap: 32px;
+    padding: 0 20px;
   }
 `;
 
@@ -1909,12 +1957,14 @@ const ModalContent = styled.div`
   box-sizing: border-box;
 
   @media (max-width: 768px) {
-    padding: 30px 15px;
+    padding: 40px 24px;
     max-width: 100%;
+    margin: 20px;
   }
 
   @media (max-width: 480px) {
-    padding: 25px 10px;
+    padding: 32px 16px;
+    margin: 16px;
   }
 `;
 
@@ -1983,13 +2033,15 @@ const ModalFormInput = styled.input`
   box-sizing: border-box;
 
   @media (max-width: 768px) {
-    padding: 14px 18px;
-    font-size: 0.95rem;
+    padding: 18px 22px;
+    font-size: 1rem;
+    min-height: 56px;
   }
 
   @media (max-width: 480px) {
-    padding: 12px 16px;
-    font-size: 0.9rem;
+    padding: 20px 24px;
+    font-size: 1.1rem;
+    min-height: 60px;
   }
 
   &:focus {
@@ -2011,13 +2063,15 @@ const ModalFormSelect = styled.select`
   cursor: pointer;
 
   @media (max-width: 768px) {
-    padding: 14px 18px;
-    font-size: 0.95rem;
+    padding: 18px 22px;
+    font-size: 1rem;
+    min-height: 56px;
   }
 
   @media (max-width: 480px) {
-    padding: 12px 16px;
-    font-size: 0.9rem;
+    padding: 20px 24px;
+    font-size: 1.1rem;
+    min-height: 60px;
   }
 
   &:focus {
@@ -2041,15 +2095,17 @@ const ModalFormTextarea = styled.textarea`
   box-sizing: border-box;
 
   @media (max-width: 768px) {
-    padding: 14px 18px;
-    font-size: 0.95rem;
-    height: 100px;
+    padding: 18px 22px;
+    font-size: 1rem;
+    height: 120px;
+    min-height: 120px;
   }
 
   @media (max-width: 480px) {
-    padding: 12px 16px;
-    font-size: 0.9rem;
-    height: 80px;
+    padding: 20px 24px;
+    font-size: 1.1rem;
+    height: 140px;
+    min-height: 140px;
   }
 
   &:focus {
@@ -2071,15 +2127,17 @@ const ModalButton = styled.button`
   margin: 0 12px;
 
   @media (max-width: 768px) {
-    padding: 14px 28px;
-    font-size: 1rem;
+    padding: 18px 32px;
+    font-size: 1.1rem;
     margin: 0 8px;
+    min-height: 56px;
   }
 
   @media (max-width: 480px) {
-    padding: 12px 24px;
-    font-size: 0.9rem;
+    padding: 20px 36px;
+    font-size: 1.2rem;
     margin: 0 4px;
+    min-height: 60px;
   }
 
   &:hover {
