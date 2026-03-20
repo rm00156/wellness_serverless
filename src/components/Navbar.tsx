@@ -77,97 +77,99 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-black/95 backdrop-blur-sm" : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex items-center justify-between px-6 py-4 max-w-[1440px]">
-        {/* Mobile Menu Button (left on mobile) */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="lg:hidden text-white text-xs font-medium tracking-widest hover:opacity-70 transition-opacity w-20"
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? "CLOSE" : "MENU"}
-        </button>
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled ? "bg-black/95 backdrop-blur-sm" : "bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex items-center justify-between px-6 py-4 max-w-[1440px]">
+          {/* Mobile Menu Button (left on mobile) */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="lg:hidden text-white text-xs font-medium tracking-widest hover:opacity-70 transition-opacity w-20"
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? "CLOSE" : "MENU"}
+          </button>
 
-        {/* Logo */}
-        <Link href="/" className="flex-shrink-0">
-          <Image
-            src="/logo.png"
-            alt="Hylton Health Club"
-            width={160}
-            height={40}
-            className="h-8 w-auto brightness-0 invert"
-          />
-        </Link>
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0">
+            <Image
+              src="/logo.png"
+              alt="Hylton Health Club"
+              width={160}
+              height={40}
+              className="h-8 w-auto brightness-0 invert"
+            />
+          </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) =>
-            link.dropdown ? (
-              <div
-                key={link.label}
-                className="relative"
-                onMouseEnter={() => handleMouseEnter(link.label)}
-                onMouseLeave={handleMouseLeave}
-              >
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) =>
+              link.dropdown ? (
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={() => handleMouseEnter(link.label)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <Link
+                    href={link.href}
+                    className="text-white text-xs font-medium tracking-widest hover:opacity-70 transition-opacity"
+                  >
+                    {link.label} +
+                  </Link>
+                  {openDropdown === link.label && (
+                    <div className="absolute top-full left-0 mt-4 bg-black/95 backdrop-blur-sm border border-white/10 min-w-[200px]">
+                      {link.dropdown.map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          className="block px-6 py-4 text-white text-sm font-medium tracking-wider hover:bg-white/10 transition-colors border-b border-white/5 last:border-b-0"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
                 <Link
+                  key={link.label}
                   href={link.href}
                   className="text-white text-xs font-medium tracking-widest hover:opacity-70 transition-opacity"
                 >
-                  {link.label} +
+                  {link.label}
                 </Link>
-                {openDropdown === link.label && (
-                  <div className="absolute top-full left-0 mt-4 bg-black/95 backdrop-blur-sm border border-white/10 min-w-[200px]">
-                    {link.dropdown.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        className="block px-6 py-4 text-white text-sm font-medium tracking-wider hover:bg-white/10 transition-colors border-b border-white/5 last:border-b-0"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-white text-xs font-medium tracking-widest hover:opacity-70 transition-opacity"
-              >
-                {link.label}
-              </Link>
-            )
-          )}
+              )
+            )}
+          </div>
+
+          {/* Desktop Join Us Button */}
+          <button
+            onClick={() => setJoinUsOpen(true)}
+            className="hidden lg:block border border-white text-white text-xs font-medium tracking-widest px-6 py-2.5 rounded-full hover:bg-white hover:text-black transition-colors"
+          >
+            JOIN US
+          </button>
+
+          {/* Mobile Join Us Button (right on mobile) */}
+          <button
+            onClick={() => {
+              setMenuOpen(false);
+              setJoinUsOpen(true);
+            }}
+            className="lg:hidden border border-white text-white text-xs font-medium tracking-widest px-4 py-2 rounded-full hover:bg-white hover:text-black transition-colors w-20 text-center"
+          >
+            JOIN US
+          </button>
         </div>
-
-        {/* Desktop Join Us Button */}
-        <button
-          onClick={() => setJoinUsOpen(true)}
-          className="hidden lg:block border border-white text-white text-xs font-medium tracking-widest px-6 py-2.5 rounded-full hover:bg-white hover:text-black transition-colors"
-        >
-          JOIN US
-        </button>
-
-        {/* Mobile Join Us Button (right on mobile) */}
-        <button
-          onClick={() => {
-            setMenuOpen(false);
-            setJoinUsOpen(true);
-          }}
-          className="lg:hidden border border-white text-white text-xs font-medium tracking-widest px-4 py-2 rounded-full hover:bg-white hover:text-black transition-colors w-20 text-center"
-        >
-          JOIN US
-        </button>
-      </div>
+      </nav>
 
       {/* Mobile Drawer Backdrop */}
       <div
-        className={`lg:hidden fixed inset-0 bg-black/60 z-40 transition-opacity duration-300 ${
+        className={`lg:hidden fixed inset-0 bg-black/60 z-[998] transition-opacity duration-300 ${
           menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMenuOpen(false)}
@@ -175,7 +177,7 @@ export default function Navbar() {
 
       {/* Mobile Side Drawer */}
       <div
-        className={`lg:hidden fixed top-0 left-0 h-full w-[75vw] max-w-[380px] bg-black z-50 flex flex-col transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden fixed top-0 left-0 h-full w-[75vw] max-w-[380px] bg-black z-[999] flex flex-col transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -284,7 +286,8 @@ export default function Navbar() {
           </a>
         </div>
       </div>
+
       <JoinUsOverlay open={joinUsOpen} onClose={() => setJoinUsOpen(false)} />
-    </nav>
+    </>
   );
 }
