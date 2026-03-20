@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(npm install:*)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --use-npm --no-import-alias --turbopack)",
+      "Bash(printf \"no\\\\nno\\\\n\")",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --use-npm --turbopack)",
+      "Bash(yes \"\")",
+      "Bash(git checkout:*)",
+      "Bash(npm run:*)",
+      "WebFetch(domain:maps.app.goo.gl)",
+      "WebFetch(domain:www.thirdspace.london)"
+    ]
+  }
+}
